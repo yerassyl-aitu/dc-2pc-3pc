@@ -77,6 +77,7 @@ def two_pc(txid: str, op: dict) -> dict:
             all_yes = False
 
     decision = "COMMIT" if all_yes else "ABORT"
+    time.sleep(10)
     wal_append(f"{txid} {decision}")
     with lock:
         TX[txid]["votes"] = votes
